@@ -146,14 +146,14 @@ mod tests {
     #[test]
     fn test_build_query() {
         let domain_name = "www.example.com";
-        let query = DNSQuery::build_query(&domain_name);
+        let query = DNSQuery::build_query(domain_name);
         // Check if the length of the query is correct
         let encoded_name_len = DNSQuestion::encode_domain_name(domain_name).len();
         let expected_query_len = 12 + encoded_name_len + 4;
         assert_eq!(query.len(), expected_query_len);
 
         let id = u16::from_be_bytes([query[0], query[1]]);
-        let expected_header = vec![
+        let expected_header = [
             id.to_be_bytes()[0],
             id.to_be_bytes()[1], // id
             0x01,
