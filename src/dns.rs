@@ -36,11 +36,11 @@ struct DNSQuestion {
 impl DNSQuestion {
     fn new(domain_name: &str) -> Self {
         let encoded = DNSQuestion::encode_domain_name(domain_name);
-        return DNSQuestion {
+        DNSQuestion {
             name: encoded,
             type_: TYPE_A,
             class_: CLASS_IN,
-        };
+        }
     }
 
     fn encode_domain_name(domain_name: &str) -> Vec<u8> {
